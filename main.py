@@ -46,14 +46,14 @@ def load_my_model():
     DIRECTORY = './input/'
     LEARN = False
 
-    locations = pd.read_csv(DIRECTORY + 'locations.csv')
-    pickup_times = pd.read_csv(DIRECTORY + 'pickup_times.csv')
-    pickup_times['date'] = pd.to_datetime(pickup_times['iso_8601_timestamp'])
-    pickup_times = pickup_times.drop(['iso_8601_timestamp'], axis=1)
-
-    X, y = prepare_data(pickup_times)
-
     if LEARN:
+        locations = pd.read_csv(DIRECTORY + 'locations.csv')
+        pickup_times = pd.read_csv(DIRECTORY + 'pickup_times.csv')
+        pickup_times['date'] = pd.to_datetime(pickup_times['iso_8601_timestamp'])
+        pickup_times = pickup_times.drop(['iso_8601_timestamp'], axis=1)
+
+        X, y = prepare_data(pickup_times)
+
         model = Sequential()
 
         model.add(Dense(124, kernel_initializer='normal', activation='selu'))
